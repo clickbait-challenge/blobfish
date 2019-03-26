@@ -38,9 +38,13 @@ def predictOutput(input_dir, output_dir):
 
     
     for fil in os.listdir(input_dir):
-        print(fil)
         if fil == "instances.jsonl":
-            instances = fil
+            print(fil)
+            instances = str(fil)
+            print(instances)
+
+
+    
 
     # leggere dataset e trasformarlo in lista
     datas = training_data.getTestData(instances)
