@@ -88,7 +88,7 @@ def predictOutput(input_dir, output_dir):
     #weNet
     #outputPred = model.predict(x_TR)
     #lingNet
-    outputPred = model.predict(x_LING)
+    outputPred = model.predict(x_LING_exp)
 
     # lista con id - otuput predict
     with open(os.path.join(output_dir, "results.jsonl"), 'w', encoding="utf-8") as output:
