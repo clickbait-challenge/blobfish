@@ -80,7 +80,14 @@ def predictOutput(input_dir, output_dir):
 
 
     # predict
+    #fullNetConc
     outputPred = model.predict([x_TR, x_LING])
+    #fullNet
+    #outputPred = model.predict(x_CONCAT)
+    #weNet
+    #outputPred = model.predict(x_TR)
+    #lingNet
+    #outputPred = model.predict(x_LING)
 
     # lista con id - otuput predict
     with open(os.path.join(output_dir, "results.jsonl"), 'w', encoding="utf-8") as output:
