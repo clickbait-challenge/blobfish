@@ -36,8 +36,13 @@ def predictOutput(input_dir, output_dir):
         fbeta_score = (1 + bb) * (p * r) / (bb * p + r + K.epsilon())
         return fbeta_score
 
+    
+    for fil in os.listdir(input_dir):
+	if fil == "instances.jsonl":
+	   instances = fil;
+
     # leggere dataset e trasformarlo in lista
-    datas = training_data.getTestData(input_dir)
+    datas = training_data.getTestData(instances)
 
     # tokenizzare
     tokens, post_pos, pos, ids = tokenizer.tokenizer(datas)
