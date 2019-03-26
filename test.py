@@ -38,6 +38,7 @@ def predictOutput(input_dir, output_dir):
 
     
     for fil in os.listdir(input_dir):
+        print(fil)
         if fil == "instances.jsonl":
             instances = fil
 
