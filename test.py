@@ -40,7 +40,7 @@ def predictOutput(input_dir, output_dir):
     for fil in os.listdir(input_dir):
         if fil == "instances.jsonl":
             print(fil)
-            instances = input_dir+fil
+            instances = input_dir+"/"+fil
             print(instances)
 
 
