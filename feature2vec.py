@@ -251,36 +251,36 @@ class feature2vec:
         vec.append(self.longest_word(array))
         vec.append(self.count_POS(array, "PRP"))
         vec.append(self.count_POS(array, "VBZ"))
-        vec.append(self.count_tri_POS(array, "NNP", "NNP", "VBZ"))  # to leave
+        # vec.append(self.count_tri_POS(array, "NNP", "NNP", "VBZ"))  # to leave
         vec.append(self.count_big_POS(array, "NN", "IN"))
         vec.append(self.count_tri_POS(array, "NN", "IN", "NNP"))
-        vec.append(self.count_big_POS(array, "NNP", "."))  # to leave
-        vec.append(self.count_big_POS(array, "PRP", "VBP"))  # to leave
-        vec.append(self.count_POS(array, "WP"))  # to leave
+        # vec.append(self.count_big_POS(array, "NNP", "."))  # to leave
+        # vec.append(self.count_big_POS(array, "PRP", "VBP"))  # to leave
+        # vec.append(self.count_POS(array, "WP"))  # to leave
         vec.append(self.count_POS(array, "DT"))
 
-        vec.append(self.count_big_POS(array, "NNP", "IN"))  # to leave
+        # vec.append(self.count_big_POS(array, "NNP", "IN"))  # to leave
         vec.append(self.count_tri_POS(array, "IN", "NNP", "NNP"))
         vec.append(self.count_POS(array, "POS"))
         vec.append(self.count_big_POS(array, "IN", "NN"))
         vec.append(self.count_POS(array, ","))
-        vec.append(self.count_big_POS(array, "NNP", "NNS"))  # to leave
-        vec.append(self.count_big_POS(array, "IN", "JJ"))  # to leave
+        # vec.append(self.count_big_POS(array, "NNP", "NNS"))  # to leave
+        # vec.append(self.count_big_POS(array, "IN", "JJ"))  # to leave
 
-        vec.append(self.count_big_POS(array, "NNP", "POS"))  # to leave
-        vec.append(self.count_POS(array, "WDT"))  # to leave
+        # vec.append(self.count_big_POS(array, "NNP", "POS"))  # to leave
+        # vec.append(self.count_POS(array, "WDT"))  # to leave
         vec.append(self.count_big_POS(array, "NN", "NN"))
-        vec.append(self.count_big_POS(array, "NN", "NNP"))  # to leave
-        vec.append(self.count_big_POS(array, "NNP", "VBD"))  # to leave
+        # vec.append(self.count_big_POS(array, "NN", "NNP"))  # to leave
+        # vec.append(self.count_big_POS(array, "NNP", "VBD"))  # to leave
         vec.append(self.count_POS(array, "RB"))
 
-        vec.append(self.count_tri_POS(array, "NNP", "NNP", "NNP"))  # to leave
-        vec.append(self.count_tri_POS(array, "NNP", "NNP", "NN"))  # to leave
+        # vec.append(self.count_tri_POS(array, "NNP", "NNP", "NNP"))  # to leave
+        # vec.append(self.count_tri_POS(array, "NNP", "NNP", "NN"))  # to leave
 
-        vec.append(self.count_POS(array, "RBS"))  # to leave
+        # vec.append(self.count_POS(array, "RBS"))  # to leave
         vec.append(self.count_POS(array, "VBN"))
-        vec.append(self.count_big_POS(array, "VBN", "IN"))  # to leave
-        vec.append(self.count_big_POS(array, "JJ", "NNP"))  # to leave
+        # vec.append(self.count_big_POS(array, "VBN", "IN"))  # to leave
+        # vec.append(self.count_big_POS(array, "JJ", "NNP"))  # to leave
         vec.append(self.count_tri_POS(array, "NNP", "NN", "NN"))
         vec.append(self.count_big_POS(array, "DT", "NN"))
 
