@@ -50,8 +50,12 @@ def predictOutput(input_dir, output_dir):
     ling_feat = word2vec.lingFeatures(post_pos)
 
     # caricare il modello ----> METTERE PERCORSO DEL MODELLO MIGLIORE
-    model = keras.models.load_model("models/fullNetConc/mse0.06277644574126597_accuracy0.5480489961380518_dropout0.2_momentum0.0_lrate0.1_gru128.h5",
+
+        
+model = keras.models.load_model("longTraining/models/fullNet/mse0.03278803620610245_accuracy0.8429188452462875_dropout0.0_momentum0.0_lrate0.03_gru128.h5",
                                     custom_objects={'prec':prec, 'rec':rec, 'f_one':f_one})
+#model = keras.models.load_model("models/fullNetConc/mse0.06277644574126597_accuracy0.5480489961380518_dropout0.2_momentum0.0_lrate0.1_gru128.h5",
+                                   # custom_objects={'prec':prec, 'rec':rec, 'f_one':f_one})
 
     # sistemare forma dati passati alla rete
 
