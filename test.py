@@ -9,7 +9,6 @@ import argparse
 import os
 import json
 from metrics import *
-import read_new_dataset
 import tensorflow as tf
 
 
