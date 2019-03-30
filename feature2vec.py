@@ -255,7 +255,7 @@ class feature2vec:
         vec.append(self.count_big_POS(array, "NN", "IN"))
         vec.append(self.count_tri_POS(array, "NN", "IN", "NNP"))
         vec.append(self.count_big_POS(array, "NNP", "."))  # to leave
-        #vec.append(self.count_big_POS(array, "PRP", "VBP"))  # to leave
+        vec.append(self.count_big_POS(array, "PRP", "VBP"))  # to leave
         vec.append(self.count_POS(array, "WP"))  # to leave
         vec.append(self.count_POS(array, "DT"))
 

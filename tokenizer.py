@@ -88,11 +88,10 @@ def tokenizer(data, unlab=False):
 '''
 
 
-def special_char(data, name, unlab=False):
+def special_char(data, name, unlab=False, test = False):
     if unlab:
         i=0
         for el in data:
-            print("*****  ", i,"  ****")
             post = el['postText'][0]
             post = re.sub(r".@\w+", " usertag", post)
             post = re.sub(r"https?:\/\/\S+\b|www\.(\w+\.)+\S*", " linkurl", post)
@@ -104,7 +103,6 @@ def special_char(data, name, unlab=False):
 
 
             if len(el['targetParagraphs']) !=0 :
-                print(type(el['targetParagraphs']))
                 for phrasePar in range(len(el['targetParagraphs'])):
                     post = el['targetParagraphs'][phrasePar]
                     post = re.sub(r".@\w+", " usertag", post)
@@ -116,7 +114,6 @@ def special_char(data, name, unlab=False):
                     el['targetParagraphs'][phrasePar] = post
 
             if len(el['targetTitle']) !=0 :
-                print(type(el['targetTitle']))
                 if type(el['targetTitle']) == 'str':
                     post = el['targetTitle']
                     post = re.sub(r".@\w+", " usertag", post)
@@ -127,7 +124,6 @@ def special_char(data, name, unlab=False):
                     post = re.sub(r"\\n|\/n", "", post)
                     el['targetTitle'] = post
                 elif type(el['targetTitle']) == 'list':
-                    print(type(el['targetTitle']))
                     for phraseTitle in range(len(el['targetTitle'])):
                         post = el['targetTitle'][phraseTitle]
                         post = re.sub(r".@\w+", " usertag", post)
@@ -149,10 +145,12 @@ def special_char(data, name, unlab=False):
             post = re.sub(r"\\n|\/n", "", post)
             el['postText'][0] = post
 
+    if test:
+        return data
+    else:
+        create_dataset(data, name)
+        return data
 
-
-    create_dataset(data, name)
-    return data
 
 #special_char(data)
 # tokenizer()
