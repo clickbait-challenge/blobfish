@@ -13,7 +13,7 @@ import read_new_dataset
 import tensorflow as tf
 
 
-def predictOutput(input_dir, output_dir, modello):
+def predictOutput(input_dir, output_dir):
 
     def score(x_VL,y_VL, model):
         tetruth_means = y_VL
@@ -112,7 +112,7 @@ def predictOutput(input_dir, output_dir, modello):
     #model = keras.models.load_model("longTraining/models/lingNet/mse0.04097315482752896_accuracy0.8099568083926368_dropout0.0_momentum0.0_lrate0.1_gru128.h5", custom_objects={'prec':prec, 'rec':rec, 'f_one':f_one})
     
     
-    model = keras.models.load_model(modello, custom_objects={'prec':prec, 'rec':rec, 'f_one':f_one})
+    model = keras.models.load_model("longTraining/models/fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5", custom_objects={'prec':prec, 'rec':rec, 'f_one':f_one})
 
     saver = tf.train.Saver()
     sess = keras.backend.get_session()
@@ -188,10 +188,10 @@ def __main__():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', dest="input_dir")
     parser.add_argument('-o', dest="output_dir")
-    parser.add_argument('-m', dest="model")
+    #parser.add_argument('-m', dest="model")
     args = parser.parse_args()
 
-    predictOutput(args.input_dir, args.output_dir, args.model)
+    predictOutput(args.input_dir, args.output_dir)
 
 
 
