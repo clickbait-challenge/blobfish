@@ -67,26 +67,22 @@ def predictOutput(input_dir, output_dir, type_model):
     dir = "longTraining/models/"
 
     if type_model == "FullNet":
-        model_fullNet = dir + "fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5"
-        keras_model = "./" + model_fullNet
+        model_path = dir + "fullNet/mse0.03215102037060502_accuracy0.8458740623410818_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
     if type_model == "FullNetPost":
-        model_fullNetConc = dir + "fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5"
-        keras_model = "./" + model_fullNetConc
+        model_path = dir + "fullNetConc/mse0.03236195068297453_accuracy0.8422368720705657_dropout0.2_momentum0.0_lrate0.3_gru128.hdf5"
     if type_model == "LingNet":
-        model_lingNet = dir + "fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5"
-        keras_model = "./" + model_lingNet
+        model_path = dir + "lingNet/mse0.04054230694290886_accuracy0.8108661059602658_dropout0.0_momentum0.0_lrate0.4_gru128.hdf5"
     if type_model == "WordEmbNet":
-        model_weNet = dir + "fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5"
-        keras_model = "./" + model_weNet
+        model_path = dir + "weNet/mse0.0323618515076001_accuracy0.8449647647734527_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
 
     model = keras.models.load_model(
-        "longTraining/models/fullNetConc/mse0.032999915599477486_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.1_gru128.hdf5",
-        custom_objects={
+        model_path, custom_objects={
             'prec': prec,
             'rec': rec,
             'f_one': f_one
         })
 
+    keras_model = "./" + model_path
     saver = tf.train.Saver()
     sess = keras.backend.get_session()
     saver.restore(sess, keras_model)
