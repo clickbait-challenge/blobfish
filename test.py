@@ -67,13 +67,13 @@ def predictOutput(input_dir, output_dir, type_model):
     dir = "longTraining/models/"
 
     if type_model == "FullNet":
-        model_path = dir + "fullNet/mse0.03215102037060502_accuracy0.8458740623410818_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
+        model_path = dir + "fullNet/mse0.032553340215849914_accuracy0.842464196462473_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
     if type_model == "FullNetPost":
-        model_path = dir + "fullNetConc/mse0.03236195068297453_accuracy0.8422368720705657_dropout0.2_momentum0.0_lrate0.3_gru128.hdf5"
+        model_path = dir + "fullNetConc/mse0.032816953588701375_accuracy0.8392816549757715_dropout0.2_momentum0.0_lrate0.3_gru128.hdf5"
     if type_model == "LingNet":
-        model_path = dir + "lingNet/mse0.04054230694290886_accuracy0.8108661059602658_dropout0.0_momentum0.0_lrate0.4_gru128.hdf5"
+        model_path = dir + "lingNet/mse0.040141911279121346_accuracy0.8167765401498543_dropout0.0_momentum0.0_lrate0.4_gru128.hdf5"
     if type_model == "WordEmbNet":
-        model_path = dir + "weNet/mse0.0323618515076001_accuracy0.8449647647734527_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
+        model_path = dir + "weNet/mse0.03307730689472056_accuracy0.8388270061784073_dropout0.5_momentum0.0_lrate0.3_gru128.hdf5"
 
     model = keras.models.load_model(
         model_path, custom_objects={
