@@ -1,0 +1,2 @@
+model_checkpoint_path: "mse0.04054230694290886_accuracy0.8108661059602658_dropout0.0_momentum0.0_lrate0.4_gru128.hdf5"
+all_model_checkpoint_paths: "mse0.04054230694290886_accuracy0.8108661059602658_dropout0.0_momentum0.0_lrate0.4_gru128.hdf5"
