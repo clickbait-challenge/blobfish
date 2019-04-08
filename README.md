@@ -31,12 +31,10 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
    python3 test.py -i test_data -o output -m model
    ```
    **test_data**: directory where is located test dataset
+
    **output**: path of the output text
-   **model**: name of the choosen model
-   		*WordEmbNet*
-   		*LingNet*
-   		*FullNetPost*
-   		*FullNet*
+
+   **model**: name of the choosen model (*WordEmbNet*,*LingNet*,*FullNetPost*,*FullNet*)
 
    if you want to test your trained model you must change path of the model into test.py
     ```python
