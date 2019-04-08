@@ -19,14 +19,7 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
    pip3 install -r requirements.txt
    ```
 
-
-5. for training
-
-   ```python
-   python3 main.py
-   ```
-
-6. for test
+5. for test
    ```python
    python3 test.py -i test_data -o output -m model
    ```
@@ -34,23 +27,10 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
 
    **output**: path of the output text
 
-   **model**: name of the choosen model (*WordEmbNet*,*LingNet*,*FullNetPost*,*FullNet*)
-
-   if you want to test your trained model you must change path of the model into test.py
-    ```python
-    dir = "longTraining/models/"
-    if type_model == "FullNet":
-	 	model_path = dir + "path/to/model/model_name.hdf5"
-    if type_model == "FullNetPost":
-    	model_path = dir + "path/to/model/model_name.hdf5"
-    if type_model == "LingNet":
-    	model_path = dir + "path/to/model/model_name.hdf5"
-    if type_model == "WordEmbNet":
-    	model_path = dir + "path/to/model/model_name.hdf5"
-    ```
+   **model**: name of the choosen model (*WordEmbNet*, *LingNet*, *FullNetPost*, *FullNet*)
 
 
-7. for evaluating
+6. for evaluating
    ```python
    python3 eval.py test_data/truth.jsonl ./output/results.jsonl output.prototext
    ```
