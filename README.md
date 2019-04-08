@@ -26,7 +26,7 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
    python3 main.py
    ```
 
-6. for test
+6. if you want to test our pretrained models
    ```python
    python3 test.py -i test_data -o output -m model
    ```
@@ -36,7 +36,7 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
 
    **model**: name of the choosen model (*WordEmbNet*, *LingNet*, *FullNetPost*, *FullNet*)
 
-   if you want to test your trained model you must change path of the model into test.py
+   if you want to test your own model, you must change path of the model into `test.py`
     ```python
     dir = "longTraining/models/"
     if type_model == "FullNet":
