@@ -28,7 +28,6 @@ def w2v(tokens, min):
 def vectorizeDataset(tokens):
 
     model = Word2Vec.load("word2vec.model")
-    
     '''
        vect_dataset = lista con tutti i post, ognuno dei quali ha, al posto di ogni parola, un vettore numerico (embedding della parola) 
     '''
@@ -40,8 +39,8 @@ def vectorizeDataset(tokens):
     #         tmp.append(vec_w)
     #     vect_dataset.append(tmp)
 
-    count_OOV=0
-    count_NOT_OOV=0
+    count_OOV = 0
+    count_NOT_OOV = 0
 
     OOV_alr = False
     unknown = []
@@ -67,7 +66,6 @@ def vectorizeDataset(tokens):
     print("ok vectorized")
     print("count_OOV:" + str(count_OOV))
     print("count_NOT_OOV:" + str(count_NOT_OOV))
-    
 
     return vect_dataset
 
@@ -82,6 +80,7 @@ def lingFeatures(post_pos):
     vec_feat.execute()
     v = vec_feat.get_vect()
     return v
+
 
 # print(len(vect_dataset))
 # print(list(model.wv.vocab))

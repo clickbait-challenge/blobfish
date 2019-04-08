@@ -7,36 +7,69 @@ import tokenize
 
 
 def create_dataset(data, name):
-    path = "datasets/"+name
+    """ Create dataset
+
+    Parameters
+    ----------
+    data : list
+        list of dictionay elements
+    name: string
+        name of dataset
+    
+    """
+    path = "datasets/" + name
     with open(path, 'w') as outfile:
         json.dump(data, outfile)
 
 
 def getTestData(file):
+    """ Get test data
+
+    Parameters
+    ----------
+    file: string
+        name of file
+
+    Returns
+    ---------
+    new_dataset: list
+        list of dictionay elements
+    
+    """
+
     datas = []
     new_dataset = []
 
-    i=0
+    i = 0
     with jsonlines.open(file) as reader:
         for instances in reader:
             datas.append(instances)
-            i = i+1
+            i = i + 1
 
-    i=0
+    i = 0
     for d in datas:
         new_dataset.append({
             'id': datas[i]['id'],
             'postText': datas[i]['postText']
         })
-        i=i+1
+        i = i + 1
 
     return new_dataset
 
+
 def getData():
+    """ Get data for training
+
+    Returns
+    ---------
+    new_dataset: list
+        list of dictionay elements
+
+    """
     datas = []
     target = []
 
-    i=0
+    i = 0
     file_inst = 'datasets/1/instances.jsonl'
     with jsonlines.open(file_inst) as reader:
         for instances in reader:
@@ -82,6 +115,14 @@ def getData():
 
 
 def getDataUnlabeled():
+    """ Get unlabeled data for training
+
+    Returns
+    ---------
+    new_dataset: list
+        list of dictionay elements
+        
+    """
 
     new_dataset = []
 
@@ -90,10 +131,14 @@ def getDataUnlabeled():
     with jsonlines.open(file_inst) as reader:
         for instances in reader:
             new_dataset.append({
-                'id': instances['id'],
-                'postText': instances['postText'],
-                'targetTitle': instances['targetTitle'],
-                'targetParagraphs': instances['targetParagraphs']
+                'id':
+                instances['id'],
+                'postText':
+                instances['postText'],
+                'targetTitle':
+                instances['targetTitle'],
+                'targetParagraphs':
+                instances['targetParagraphs']
             })
             i = i + 1
     return new_dataset

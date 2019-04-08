@@ -13,6 +13,18 @@ import tensorflow as tf
 
 
 def predictOutput(input_dir, output_dir, type_model):
+    """ Makes prediction 
+
+    Parameters
+    ----------
+    input_dir : string
+        path of input directory, where instances.jsonl is located
+    output_dir : string
+        path of output dir, where result.jsonl is written
+    type_model : string
+        name of the model
+    """
+
     def prec(y_true, y_pred):
         true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
         predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
@@ -43,27 +55,29 @@ def predictOutput(input_dir, output_dir, type_model):
             print(fil)
             instances = input_dir + "/" + fil
             print(instances)
-
-    # leggere dataset e trasformarlo in lista
+    """ 
+    Read test datas
+    """
     datas = training_data.getTestData(instances)
-    #datas = read_new_dataset.readData(modified=True)
-
-    # modificare dataset
+    """ 
+    Clean test datas
+    """
     datas = tokenizer.special_char(datas, "", test=True)
-
-    # tokenizzare
+    """ 
+    Tokenize test datas
+    """
     tokens, post_pos, pos, ids = tokenizer.tokenizer(datas)
-
-    # creare embedding
-    # all'interno c'è già il richiamo al modello di w2v allenato sugli unlabeled
-
+    """ 
+    Vectorize words
+    """
     vect_dataset = word2vec.vectorizeDataset(tokens)
-
-    # creare feature linguistiche
+    """
+    Vectorize linguistic features
+    """
     ling_feat = word2vec.lingFeatures(post_pos)
-
-    # caricare il modello ----> METTERE PERCORSO DEL MODELLO MIGLIORE
-
+    """ 
+    Load models
+    """
     dir = "longTraining/models/"
 
     if type_model == "FullNet":
@@ -86,8 +100,9 @@ def predictOutput(input_dir, output_dir, type_model):
     saver = tf.train.Saver()
     sess = keras.backend.get_session()
     saver.restore(sess, keras_model)
-
-    # sistemare forma dati passati alla rete
+    """
+    Prepare data to be passed to the network
+    """
     x_LING = ling_feat
     x_LING = (np.array(x_LING)).astype(np.float32)
     x_LING_exp = np.expand_dims(x_LING, axis=2)
@@ -101,10 +116,9 @@ def predictOutput(input_dir, output_dir, type_model):
         truncating='post',
         value=0.0)).astype(np.float32)
 
-    x_CONCAT = np.concatenate((x_TR, x_LING_exp),
-                              axis=2)  # solo per fullNetwork semplice
-
-    # predict
+    x_CONCAT = np.concatenate((x_TR, x_LING_exp), axis=2)
+    """ Predict
+    """
     if type_model == "FullNet":
         outputPred = model.predict(x_CONCAT)
     if type_model == "FullNetPost":
@@ -113,8 +127,9 @@ def predictOutput(input_dir, output_dir, type_model):
         outputPred = model.predict(x_LING_exp)
     if type_model == "WordEmbNet":
         outputPred = model.predict(x_TR)
-
-    # lista con id - otuput predict
+    """ 
+    Write results
+    """
     with open(
             os.path.join(output_dir, "results.jsonl"), 'w',
             encoding="utf-8") as output:

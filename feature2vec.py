@@ -214,27 +214,56 @@ class feature2vec:
 
     def feature2vec(self, array):
         """
+        Built and return feature vector
+
         Feature vector
-        [N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of NNP (int)
-        [0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of tokens (int)
-        [0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP NNP (int)
-        [0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Whether the post start with number (1 true, 0 false)
-        [0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of IN (int)
-        [0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP VBZ (int)
-        [0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram IN NNP (int)
-        [0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0] Number of WRB (int)
-        [0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0] Number of NN (int)
-        [0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0] Average word length (float)
-        [0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0] Length of the longest word (int)
-        [0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0] Number of PRP (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0] Number of VBZ (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0] Number of POS 3-gram NNP NNP VBZ (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0] Number of POS 2-gram NN IN (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0] Number of POS 3-gram NN IN NNP (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0] Number of POS 2-gram NNP . (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0] Number of POS 2-gram PRP VBP (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0] Number of WP (int)
-        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N] Number of DT (int)
+        [N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of NNP (int)
+        [0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of tokens (int)
+        [0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP NNP (int)
+        [0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Whether the post start with number (1 true, 0 false)
+        [0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of IN (int)
+        [0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP VBZ (int)
+        [0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram IN NNP (int)
+        [0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of WRB (int)
+        [0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of NN (int)
+        [0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Average word length (float)
+        [0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Length of the longest word (int)
+        [0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of PRP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of VBZ (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 3-gram NNP NNP VBZ (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NN IN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 3-gram NN IN NNP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP . (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram PRP VBP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of WP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of DT (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP IN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 3-gram IN NNP NNP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram IN NN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of , (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP NNS (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram IN JJ (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP POS (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0 0] Number of WDT (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NN NN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0 0] Number of POS 2-gram NN NNP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0 0] Number of POS 2-gram NNP VBD (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0 0] Number of RB (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0 0] Number of POS 3-gram NNP NNP NNP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0 0] Number of POS 3-gram NNP NNP NN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0 0] Number of RBS (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0 0] Number of VBN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0 0] Number of POS 2-gram VBN IN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N 0] Number of POS 2-gram JJ NNP (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N] Number of POS 3-gram NNP NN NN (int)
+        [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 N] Number of POS 2-gram DT NN (int)
+        
+        Parameters
+        ----------
+        array : list
+            the list of tuples of the sentence
+        
         """
 
         vec = []
@@ -258,7 +287,6 @@ class feature2vec:
         vec.append(self.count_big_POS(array, "PRP", "VBP"))  # to leave
         vec.append(self.count_POS(array, "WP"))  # to leave
         vec.append(self.count_POS(array, "DT"))
-
         vec.append(self.count_big_POS(array, "NNP", "IN"))  # to leave
         vec.append(self.count_tri_POS(array, "IN", "NNP", "NNP"))
         vec.append(self.count_POS(array, "POS"))
@@ -266,17 +294,14 @@ class feature2vec:
         vec.append(self.count_POS(array, ","))
         vec.append(self.count_big_POS(array, "NNP", "NNS"))  # to leave
         vec.append(self.count_big_POS(array, "IN", "JJ"))  # to leave
-
         vec.append(self.count_big_POS(array, "NNP", "POS"))  # to leave
         vec.append(self.count_POS(array, "WDT"))  # to leave
         vec.append(self.count_big_POS(array, "NN", "NN"))
         vec.append(self.count_big_POS(array, "NN", "NNP"))  # to leave
         vec.append(self.count_big_POS(array, "NNP", "VBD"))  # to leave
         vec.append(self.count_POS(array, "RB"))
-
         vec.append(self.count_tri_POS(array, "NNP", "NNP", "NNP"))  # to leave
         vec.append(self.count_tri_POS(array, "NNP", "NNP", "NN"))  # to leave
-
         vec.append(self.count_POS(array, "RBS"))  # to leave
         vec.append(self.count_POS(array, "VBN"))
         vec.append(self.count_big_POS(array, "VBN", "IN"))  # to leave
@@ -287,9 +312,13 @@ class feature2vec:
         self.vect.append(vec)
 
     def execute(self):
+        """ Execute vectorization
+        """
         for pos in self.tokens_pos:
             self.feature2vec(pos)
         print("in execute - vect len: ", len(self.vect))
 
     def get_vect(self):
+        """get vect data
+        """
         return self.vect

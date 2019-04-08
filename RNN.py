@@ -19,6 +19,18 @@ import json
 start = time.time()
 
 def score(x_VL,y_VL, model):
+    """ Calculate sklearn metrics score
+
+    Parameters
+    ---------
+    x_VL: list
+        list of inputs
+    y_VL: list
+        list of target
+    model: Model
+        keras model for prediction
+        
+    """
     tetruth_means = y_VL
     petruth_means = model.predict(x_VL)
     tetruthClass = []
@@ -55,6 +67,59 @@ def score(x_VL,y_VL, model):
 
 
 def fullNetworkConcat(x_TR, x_LING, y_TR, x_VL, x_LING_VL, y_VL, g_u, lr, mom, d_e, ep):
+    """ Train the FullNetPost model
+
+    Parameters
+    ---------
+    x_TR: list
+        list of train word embedding inputs
+    x_LING: list
+        list of train features
+    y_TR: list
+        list of train tagets
+    x_VL: list
+        list of validation word embedding inputs
+    x_LING_VL: list
+        list of validation features
+    y_VL: list
+        list of validation targets
+    g_u: int
+        gru units
+    lr: float
+        learning rate
+    mom: float
+        momentum
+    d_e: float
+        droput embedding
+    ep: int
+        epochs
+   
+    Returns
+    ---------
+    trainLoss: list
+        list of train loss history
+    trainAcc: list
+        list of train accuracy history
+    valLoss: list
+        list of validation loss history
+    valAcc: list
+        list of validation accuracy history
+    precision: list
+        list of train precision history
+    recall: list
+        list of train recall history
+    f1: list
+        list of train f1 history
+    precisionVal: list
+        list of validation precision history
+    recallVal: list
+        list of validation recall history
+    f1Val: list
+        list of validation f1 history
+    model: Model
+        keras model of the network
+        
+    """
 
     wordEmb = Input(shape=(x_LING.shape[1],100,))
     dropoutWE = Dropout(d_e)(wordEmb)
@@ -101,6 +166,55 @@ def fullNetworkConcat(x_TR, x_LING, y_TR, x_VL, x_LING_VL, y_VL, g_u, lr, mom, d
 
 
 def weNetwork(x_TR, y_TR, x_VL, y_VL, g_u, lr, mom, dropout_embedding, ep):
+    """ Train the FullNetPost model
+
+    Parameters
+    ---------
+    x_TR: list
+        list of train word embedding inputs
+    y_TR: list
+        list of train tagets
+    x_VL: list
+        list of validation word embedding inputs
+    y_VL: list
+        list of validation targets
+    g_u: int
+        gru units
+    lr: float
+        learning rate
+    mom: float
+        momentum
+    dropout_embedding: float
+        droput embedding
+    ep: int
+        epochs
+   
+    Returns
+    ---------
+    trainLoss: list
+        list of train loss history
+    trainAcc: list
+        list of train accuracy history
+    valLoss: list
+        list of validation loss history
+    valAcc: list
+        list of validation accuracy history
+    precision: list
+        list of train precision history
+    recall: list
+        list of train recall history
+    f1: list
+        list of train f1 history
+    precisionVal: list
+        list of validation precision history
+    recallVal: list
+        list of validation recall history
+    f1Val: list
+        list of validation f1 history
+    model: Model
+        keras model of the network
+        
+    """
 
     model=Sequential()
     model.add(Dropout(dropout_embedding))
@@ -139,6 +253,55 @@ def weNetwork(x_TR, y_TR, x_VL, y_VL, g_u, lr, mom, dropout_embedding, ep):
 
 
 def lingNetwork(x_LING_TR, y_TR, x_LING_VL, y_VL, g_u, lr, mom, dropout_embedding, ep):
+    """ Train the FullNetPost model
+
+    Parameters
+    ---------
+    x_LING_TR: list
+        list of train features
+    y_TR: list
+        list of train tagets
+    x_LING_VL: list
+        list of validation features
+    y_VL: list
+        list of validation targets
+    g_u: int
+        gru units
+    lr: float
+        learning rate
+    mom: float
+        momentum
+    dropout_embedding: float
+        droput embedding
+    ep: int
+        epochs
+   
+    Returns
+    ---------
+    trainLoss: list
+        list of train loss history
+    trainAcc: list
+        list of train accuracy history
+    valLoss: list
+        list of validation loss history
+    valAcc: list
+        list of validation accuracy history
+    precision: list
+        list of train precision history
+    recall: list
+        list of train recall history
+    f1: list
+        list of train f1 history
+    precisionVal: list
+        list of validation precision history
+    recallVal: list
+        list of validation recall history
+    f1Val: list
+        list of validation f1 history
+    model: Model
+        keras model of the network
+        
+    """
 
     model = Sequential()
     model.add(Dropout(dropout_embedding))
@@ -175,6 +338,55 @@ def lingNetwork(x_LING_TR, y_TR, x_LING_VL, y_VL, g_u, lr, mom, dropout_embeddin
 
 
 def fullNetwork(x_CONCAT_TR, y_TR, x_CONCAT_VL, y_VL, g_u, lr, mom, dropout_embedding, ep):
+    """ Train the FullNetPost model
+
+    Parameters
+    ---------
+    x_CONCAT_TR: list
+        list of train word embedding inputs and linguistics features
+    y_TR: list
+        list of train tagets
+    x_CONCAT_VL: list
+        list of validation word embedding inputs and linguistics features
+    y_VL: list
+        list of validation targets
+    g_u: int
+        gru units
+    lr: float
+        learning rate
+    mom: float
+        momentum
+    dropout_embedding: float
+        droput embedding
+    ep: int
+        epochs
+   
+    Returns
+    ---------
+    trainLoss: list
+        list of train loss history
+    trainAcc: list
+        list of train accuracy history
+    valLoss: list
+        list of validation loss history
+    valAcc: list
+        list of validation accuracy history
+    precision: list
+        list of train precision history
+    recall: list
+        list of train recall history
+    f1: list
+        list of train f1 history
+    precisionVal: list
+        list of validation precision history
+    recallVal: list
+        list of validation recall history
+    f1Val: list
+        list of validation f1 history
+    model: Model
+        keras model of the network
+        
+    """
 
     model=Sequential()
     model.add(Dropout(dropout_embedding))
@@ -211,6 +423,21 @@ def fullNetwork(x_CONCAT_TR, y_TR, x_CONCAT_VL, y_VL, g_u, lr, mom, dropout_embe
 
 
 def networkSettings(vect_data, ling_feat, test=False, longTR = False):
+    """ Defines network settings
+
+    Parameters
+    ---------
+    vect_data: list
+        list of word embedding inputs
+    ling_feat: list
+        list of linguistics features
+    test: bool, default False
+        true if is test dataset
+    longTR: bool, default False
+        true for long training
+        
+    """
+
     x_LING = ling_feat
     x_LING = (np.array(x_LING)).astype(np.float32)
     x_LING_exp = np.expand_dims(x_LING, axis=2)
@@ -219,8 +446,7 @@ def networkSettings(vect_data, ling_feat, test=False, longTR = False):
     x_TR = (pad_sequences(x_TR, maxlen=x_LING.shape[1], dtype='int32', padding='post', truncating='post',
                           value=0.0)).astype(np.float32)
 
-    x_CONCAT = np.concatenate((x_TR, x_LING_exp), axis=2)  # solo per fullNetwork semplice
-
+    x_CONCAT = np.concatenate((x_TR, x_LING_exp), axis=2)  
     target = readData(modified=True)
 
     y_TR = []
@@ -506,18 +732,3 @@ def crossValidation(x, y, x_ling, x_ling_exp, x_concat, mod, g_u, lrate, m, drop
     return trainLoss, trainAcc, mse, accuracy, precision, recall, f1, precisionVal, recallVal, f1Val, model
 
 
-
-def provatest(x, y, x_ling, ids, model):
-    print("IN PROVATEST")
-    model = keras.models.load_model(
-        model,
-        custom_objects={'prec': prec, 'rec': rec, 'f_one': f_one})
-
-    outputPred = model.predict([x, x_ling])
-    print(" Y ", y.shape)
-    print(" outputpred ", outputPred.shape)
-
-    # lista con id - otuput predict
-    with open(os.path.join("outputProvaTest", "results.jsonl"), 'w', encoding="utf-8") as output:
-        for i in range(len(ids)):
-            output.write(json.dumps({"id": ids[i], "clickbaitScore": float(outputPred[i]), "vero score": y[i]}) + '\n')
