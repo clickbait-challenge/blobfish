@@ -7,7 +7,7 @@ The Blobfish Clickbait Detector by [Davide Fonzi](https://www.linkedin.com/in/da
 #### Download and usage
 
 1. Download [training data](https://www.clickbait-challenge.org/#data) and extract in the datasets  /datasets/ subfolders:
-	* /1/: [clickbait16-train-170331.zip] (http://www.uni-weimar.de/medien/webis/corpora/corpus-webis-clickbait-17/clickbait17-train-170331.zip)
+	* /1/: [clickbait16-train-170331.zip](http://www.uni-weimar.de/medien/webis/corpora/corpus-webis-clickbait-17/clickbait17-train-170331.zip)
 	* /2/: [clickbait17-train-170630.zip](http://www.uni-weimar.de/medien/webis/corpora/corpus-webis-clickbait-17/clickbait17-train-170630.zip)
 	* /3/: [clickbait17-unlabeled-170429.zip](http://www.uni-weimar.de/medien/webis/corpora/corpus-webis-clickbait-17/clickbait17-unlabeled-170429.zip)
 2. git clone https://github.com/tira-io/blobfish
